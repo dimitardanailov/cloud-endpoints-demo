@@ -1,0 +1,451 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://demos-biira.appspot.com/_ah/api",
+  "name" : "birra",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://demos-biira.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "birra.listBeer" : {
+      "path" : "beer",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BeerEndpoint.listBeer",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.beers.delete" : {
+      "path" : "beer/{id}",
+      "httpMethod" : "DELETE",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BeerEndpoint.removeBeer",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "birra.insertBeer" : {
+      "path" : "beer",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BeerEndpoint.insertBeer",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.updateBeer" : {
+      "path" : "beer",
+      "httpMethod" : "PUT",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BeerEndpoint.updateBeer",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.beer.search" : {
+      "path" : "searchBeer/{term}",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BeerEndpoint.searchBeer",
+      "request" : {
+        "parameters" : {
+          "term" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.getBeer" : {
+      "path" : "beer/{id}",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BeerEndpoint.getBeer",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.beers.get.comment" : {
+      "path" : "beers/{beerId}/comments/{id}",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CommentEndpoint.getComment",
+      "request" : {
+        "parameters" : {
+          "beerId" : {
+            "type" : "int64",
+            "required" : true
+          },
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.beers.comments.insert" : {
+      "path" : "beers/{beerId}/comments",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CommentEndpoint.insertComment",
+      "request" : {
+        "parameters" : {
+          "beerId" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.updateComment" : {
+      "path" : "comment",
+      "httpMethod" : "PUT",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CommentEndpoint.updateComment",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.removeComment" : {
+      "path" : "comment/{id}",
+      "httpMethod" : "DELETE",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CommentEndpoint.removeComment",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "birra.beers.comments.list" : {
+      "path" : "beers/{beerId}/comments",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CommentEndpoint.listComment",
+      "request" : {
+        "parameters" : {
+          "beerId" : {
+            "type" : "int64",
+            "required" : true
+          },
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "CollectionResponse_Beer" : {
+        "id" : "CollectionResponse_Beer",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Beer"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Beer" : {
+        "id" : "Beer",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "beerName" : {
+            "type" : "string"
+          },
+          "kindOfBeer" : {
+            "type" : "string"
+          },
+          "score" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "numberOfDrinks" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "image" : {
+            "$ref" : "Text"
+          },
+          "country" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Text" : {
+        "id" : "Text",
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "BeerCollection" : {
+        "id" : "BeerCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Beer"
+            }
+          }
+        }
+      },
+      "Comment" : {
+        "id" : "Comment",
+        "type" : "object",
+        "properties" : {
+          "commentId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "user" : {
+            "$ref" : "User"
+          },
+          "date" : {
+            "type" : "string"
+          },
+          "beerId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "comment" : {
+            "type" : "string"
+          }
+        }
+      },
+      "User" : {
+        "id" : "User",
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          },
+          "authDomain" : {
+            "type" : "string"
+          },
+          "userId" : {
+            "type" : "string"
+          },
+          "federatedIdentity" : {
+            "type" : "string"
+          },
+          "nickname" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_Comment" : {
+        "id" : "CollectionResponse_Comment",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Comment"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.samples.BeerEndpoint.listBeer" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Beer"
+        }
+      },
+      "com.samples.BeerEndpoint.removeBeer" : {
+      },
+      "com.samples.BeerEndpoint.insertBeer" : {
+        "request" : {
+          "$ref" : "Beer"
+        },
+        "response" : {
+          "$ref" : "Beer"
+        }
+      },
+      "com.samples.BeerEndpoint.updateBeer" : {
+        "request" : {
+          "$ref" : "Beer"
+        },
+        "response" : {
+          "$ref" : "Beer"
+        }
+      },
+      "com.samples.BeerEndpoint.searchBeer" : {
+        "response" : {
+          "$ref" : "BeerCollection"
+        }
+      },
+      "com.samples.BeerEndpoint.getBeer" : {
+        "response" : {
+          "$ref" : "Beer"
+        }
+      },
+      "com.samples.CommentEndpoint.getComment" : {
+        "response" : {
+          "$ref" : "Comment"
+        }
+      },
+      "com.samples.CommentEndpoint.insertComment" : {
+        "request" : {
+          "$ref" : "Comment"
+        },
+        "response" : {
+          "$ref" : "Comment"
+        }
+      },
+      "com.samples.CommentEndpoint.updateComment" : {
+        "request" : {
+          "$ref" : "Comment"
+        },
+        "response" : {
+          "$ref" : "Comment"
+        }
+      },
+      "com.samples.CommentEndpoint.removeComment" : {
+      },
+      "com.samples.CommentEndpoint.listComment" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Comment"
+        }
+      }
+    }
+  }
+}

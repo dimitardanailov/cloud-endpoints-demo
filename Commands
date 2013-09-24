@@ -1,0 +1,5 @@
+1. curl http://localhost:8888/_ah/api/birra/v1/beer
+2. curl  -H 'Content-Type: appilcation/json' -d '{"beerName": "bud"}' http://localhost:8888/_ah/api/birra/v1/beer
+
+Alternative : 
+https://developers.google.com/apis-explorer/?base=https://demos-biira.appspot.com/_ah/api#p/
