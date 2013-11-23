@@ -138,6 +138,194 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "birra.insertCar" : {
+      "path" : "car",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CarEndpoint.insertCar",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.getCar" : {
+      "path" : "car/{id}",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CarEndpoint.getCar",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.listCar" : {
+      "path" : "car",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CarEndpoint.listCar",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.removeCar" : {
+      "path" : "car/{id}",
+      "httpMethod" : "DELETE",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CarEndpoint.removeCar",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "birra.updateCar" : {
+      "path" : "car",
+      "httpMethod" : "PUT",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CarEndpoint.updateCar",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.updateBus" : {
+      "path" : "bus",
+      "httpMethod" : "PUT",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BusEndpoint.updateBus",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.insertBus" : {
+      "path" : "bus",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BusEndpoint.insertBus",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.listBus" : {
+      "path" : "bus",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BusEndpoint.listBus",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.removeBus" : {
+      "path" : "bus/{id}",
+      "httpMethod" : "DELETE",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BusEndpoint.removeBus",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "birra.getBus" : {
+      "path" : "bus/{id}",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.BusEndpoint.getBus",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "birra.beers.get.comment" : {
       "path" : "beers/{beerId}/comments/{id}",
       "httpMethod" : "GET",
@@ -324,6 +512,65 @@
           }
         }
       },
+      "Car" : {
+        "id" : "Car",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_Car" : {
+        "id" : "CollectionResponse_Car",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Car"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Bus" : {
+        "id" : "Bus",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "companyName" : {
+            "type" : "string"
+          },
+          "seats" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "CollectionResponse_Bus" : {
+        "id" : "CollectionResponse_Bus",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Bus"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
       "Comment" : {
         "id" : "Comment",
         "type" : "object",
@@ -416,6 +663,62 @@
       "com.samples.BeerEndpoint.getBeer" : {
         "response" : {
           "$ref" : "Beer"
+        }
+      },
+      "com.samples.CarEndpoint.insertCar" : {
+        "request" : {
+          "$ref" : "Car"
+        },
+        "response" : {
+          "$ref" : "Car"
+        }
+      },
+      "com.samples.CarEndpoint.getCar" : {
+        "response" : {
+          "$ref" : "Car"
+        }
+      },
+      "com.samples.CarEndpoint.listCar" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Car"
+        }
+      },
+      "com.samples.CarEndpoint.removeCar" : {
+      },
+      "com.samples.CarEndpoint.updateCar" : {
+        "request" : {
+          "$ref" : "Car"
+        },
+        "response" : {
+          "$ref" : "Car"
+        }
+      },
+      "com.samples.BusEndpoint.updateBus" : {
+        "request" : {
+          "$ref" : "Bus"
+        },
+        "response" : {
+          "$ref" : "Bus"
+        }
+      },
+      "com.samples.BusEndpoint.insertBus" : {
+        "request" : {
+          "$ref" : "Bus"
+        },
+        "response" : {
+          "$ref" : "Bus"
+        }
+      },
+      "com.samples.BusEndpoint.listBus" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Bus"
+        }
+      },
+      "com.samples.BusEndpoint.removeBus" : {
+      },
+      "com.samples.BusEndpoint.getBus" : {
+        "response" : {
+          "$ref" : "Bus"
         }
       },
       "com.samples.CommentEndpoint.getComment" : {

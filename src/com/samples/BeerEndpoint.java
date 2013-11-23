@@ -194,6 +194,9 @@ public class BeerEndpoint {
 		} finally {
 			mgr.close();
 		}
+		
+		addBeerToSearchIndex (beer) ;
+		
 		return beer;
 	}
 
