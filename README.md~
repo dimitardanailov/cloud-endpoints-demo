@@ -18,6 +18,7 @@ GitHub Repo : https://github.com/dimitardanailov/cloud-end-points-android-demo
 iOS Demo
 ====================
 Author : Mihail Velikov
+
 Github Repo : https://github.com/mvelikov/GoogleEndPoints
 
 License
