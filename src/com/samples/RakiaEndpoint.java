@@ -20,7 +20,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 @Api (name = "birra")
-public class CommentEndpoint {
+public class RakiaEndpoint {
 
 	/**
 	 * This method lists all the entities inserted in datastore.
@@ -30,19 +30,18 @@ public class CommentEndpoint {
 	 * persisted and a cursor to the next page.
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
-	@ApiMethod(name = "beers.comments.list", path = "beers/{beerId}/comments")
-	public CollectionResponse<Comment> listComment(
-			@Named("beerId") Long beerId,
+	@ApiMethod(name = "listRakia")
+	public CollectionResponse<Rakia> listRakia(
 			@Nullable @Named("cursor") String cursorString,
 			@Nullable @Named("limit") Integer limit) {
 
 		PersistenceManager mgr = null;
 		Cursor cursor = null;
-		List<Comment> execute = null;
+		List<Rakia> execute = null;
 
 		try {
 			mgr = getPersistenceManager();
-			Query query = mgr.newQuery(Comment.class, "beerId == "   +  beerId);
+			Query query = mgr.newQuery(Rakia.class);
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
 				HashMap<String, Object> extensionMap = new HashMap<String, Object>();
@@ -54,20 +53,20 @@ public class CommentEndpoint {
 				query.setRange(0, limit);
 			}
 
-			execute = (List<Comment>) query.execute();
+			execute = (List<Rakia>) query.execute();
 			cursor = JDOCursorHelper.getCursor(execute);
 			if (cursor != null)
 				cursorString = cursor.toWebSafeString();
 
 			// Tight loop for fetching all entities from datastore and accomodate
 			// for lazy fetch.
-			for (Comment obj : execute)
+			for (Rakia obj : execute)
 				;
 		} finally {
 			mgr.close();
 		}
 
-		return CollectionResponse.<Comment> builder().setItems(execute)
+		return CollectionResponse.<Rakia> builder().setItems(execute)
 				.setNextPageToken(cursorString).build();
 	}
 
@@ -77,18 +76,16 @@ public class CommentEndpoint {
 	 * @param id the primary key of the java bean.
 	 * @return The entity with primary key id.
 	 */
-	@ApiMethod(name = "beers.get.comment", path = "beers/{beerId}/comments/{id}")
-	public Comment getComment(
-			@Named("beerId") Long beerId, 
-			@Named("id") Long id) {
+	@ApiMethod(name = "getRakia")
+	public Rakia getRakia(@Named("id") Long id) {
 		PersistenceManager mgr = getPersistenceManager();
-		Comment comment = null;
+		Rakia rakia = null;
 		try {
-			comment = mgr.getObjectById(Comment.class, id);
+			rakia = mgr.getObjectById(Rakia.class, id);
 		} finally {
 			mgr.close();
 		}
-		return comment;
+		return rakia;
 	}
 
 	/**
@@ -96,24 +93,23 @@ public class CommentEndpoint {
 	 * exists in the datastore, an exception is thrown.
 	 * It uses HTTP POST method.
 	 *
-	 * @param comment the entity to be inserted.
+	 * @param rakia the entity to be inserted.
 	 * @return The inserted entity.
 	 */
-	@ApiMethod(name = "beers.comments.insert", path = "beers/{beerId}/comments")
-	public Comment insertComment(@Named ( "beerId" )Long  beerId, Comment comment) {
-		comment.setBeerId(beerId);
+	@ApiMethod(name = "insertRakia")
+	public Rakia insertRakia(Rakia rakia) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
-			if (comment.getCommentId() != null) {
-				if (containsComment(comment)) {
+			if (rakia.getId() != null) {
+				if (containsRakia(rakia)) {
 					throw new EntityExistsException("Object already exists");
 				}
 			}
-			mgr.makePersistent(comment);
+			mgr.makePersistent(rakia);
 		} finally {
 			mgr.close();
 		}
-		return comment;
+		return rakia;
 	}
 
 	/**
@@ -121,21 +117,21 @@ public class CommentEndpoint {
 	 * exist in the datastore, an exception is thrown.
 	 * It uses HTTP PUT method.
 	 *
-	 * @param comment the entity to be updated.
+	 * @param rakia the entity to be updated.
 	 * @return The updated entity.
 	 */
-	@ApiMethod(name = "updateComment")
-	public Comment updateComment(Comment comment) {
+	@ApiMethod(name = "updateRakia")
+	public Rakia updateRakia(Rakia rakia) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
-			if (!containsComment(comment)) {
+			if (!containsRakia(rakia)) {
 				throw new EntityNotFoundException("Object does not exist");
 			}
-			mgr.makePersistent(comment);
+			mgr.makePersistent(rakia);
 		} finally {
 			mgr.close();
 		}
-		return comment;
+		return rakia;
 	}
 
 	/**
@@ -144,22 +140,22 @@ public class CommentEndpoint {
 	 *
 	 * @param id the primary key of the entity to be deleted.
 	 */
-	@ApiMethod(name = "removeComment")
-	public void removeComment(@Named("id") Long id) {
+	@ApiMethod(name = "removeRakia")
+	public void removeRakia(@Named("id") Long id) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
-			Comment comment = mgr.getObjectById(Comment.class, id);
-			mgr.deletePersistent(comment);
+			Rakia rakia = mgr.getObjectById(Rakia.class, id);
+			mgr.deletePersistent(rakia);
 		} finally {
 			mgr.close();
 		}
 	}
 
-	private boolean containsComment(Comment comment) {
+	private boolean containsRakia(Rakia rakia) {
 		PersistenceManager mgr = getPersistenceManager();
 		boolean contains = true;
 		try {
-			mgr.getObjectById(Comment.class, comment.getCommentId());
+			mgr.getObjectById(Rakia.class, rakia.getId());
 		} catch (javax.jdo.JDOObjectNotFoundException ex) {
 			contains = false;
 		} finally {

@@ -138,21 +138,6 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "birra.insertCar" : {
-      "path" : "car",
-      "httpMethod" : "POST",
-      "scopes" : [ ],
-      "audiences" : [ ],
-      "clientIds" : [ ],
-      "rosyMethod" : "com.samples.CarEndpoint.insertCar",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "birra.getCar" : {
       "path" : "car/{id}",
       "httpMethod" : "GET",
@@ -168,6 +153,21 @@
           }
         },
         "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.insertCar" : {
+      "path" : "car",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.CarEndpoint.insertCar",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -433,6 +433,100 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
+    },
+    "birra.listRakia" : {
+      "path" : "rakia",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.RakiaEndpoint.listRakia",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.getRakia" : {
+      "path" : "rakia/{id}",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.RakiaEndpoint.getRakia",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.insertRakia" : {
+      "path" : "rakia",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.RakiaEndpoint.insertRakia",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "birra.removeRakia" : {
+      "path" : "rakia/{id}",
+      "httpMethod" : "DELETE",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.RakiaEndpoint.removeRakia",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "birra.updateRakia" : {
+      "path" : "rakia",
+      "httpMethod" : "PUT",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.samples.RakiaEndpoint.updateRakia",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
     }
   },
   "descriptor" : {
@@ -629,6 +723,43 @@
             "type" : "string"
           }
         }
+      },
+      "CollectionResponse_Rakia" : {
+        "id" : "CollectionResponse_Rakia",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Rakia"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Rakia" : {
+        "id" : "Rakia",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "degrees" : {
+            "type" : "number"
+          },
+          "description" : {
+            "type" : "string"
+          }
+        }
       }
     },
     "methods" : {
@@ -665,15 +796,15 @@
           "$ref" : "Beer"
         }
       },
-      "com.samples.CarEndpoint.insertCar" : {
-        "request" : {
-          "$ref" : "Car"
-        },
+      "com.samples.CarEndpoint.getCar" : {
         "response" : {
           "$ref" : "Car"
         }
       },
-      "com.samples.CarEndpoint.getCar" : {
+      "com.samples.CarEndpoint.insertCar" : {
+        "request" : {
+          "$ref" : "Car"
+        },
         "response" : {
           "$ref" : "Car"
         }
@@ -747,6 +878,34 @@
       "com.samples.CommentEndpoint.listComment" : {
         "response" : {
           "$ref" : "CollectionResponse_Comment"
+        }
+      },
+      "com.samples.RakiaEndpoint.listRakia" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Rakia"
+        }
+      },
+      "com.samples.RakiaEndpoint.getRakia" : {
+        "response" : {
+          "$ref" : "Rakia"
+        }
+      },
+      "com.samples.RakiaEndpoint.insertRakia" : {
+        "request" : {
+          "$ref" : "Rakia"
+        },
+        "response" : {
+          "$ref" : "Rakia"
+        }
+      },
+      "com.samples.RakiaEndpoint.removeRakia" : {
+      },
+      "com.samples.RakiaEndpoint.updateRakia" : {
+        "request" : {
+          "$ref" : "Rakia"
+        },
+        "response" : {
+          "$ref" : "Rakia"
         }
       }
     }
