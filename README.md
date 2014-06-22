@@ -1,15 +1,22 @@
 Cloud Endpoints Demo
 ====================
 
-Google Cloud Endpoints Demo for public lectures into a Varna Lab and Clound Conf Varna 2013
+Google Cloud Endpoints Demo for public lectures into a Varna Lab, Clound Conf Varna 2013, Soft Uni 2014
 
 Varna Lab Website : http://www.varnalab.org
 
 Cloud Conf Varna Website : https://sites.google.com/a/agilemates.com/cloudconf
 
+Soft Uni Website: https://softuni.bg/
+
 Presentation
 ====================
-Slide Share : http://www.slideshare.net/dimityrdanailov/google-cloud-endpoints
+Varna Lab and Clound Conf Slide Share Presentation: http://www.slideshare.net/dimityrdanailov/google-cloud-endpoints
+Soft Uni Slide Share Presentation: http://www.slideshare.net/dimityrdanailov/google-cloud-endpoints-soft-uni-june-2014
+
+Presentation
+====================
+Videos: https://www.youtube.com/watch?v=MDSPf10Ydm8
 
 Android Demo
 ====================
